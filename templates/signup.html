@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+
+{% block styles %}
+<link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='style.css') }}">
+{% endblock %}
+
+{% block title %} 
+Book Review
+{% endblock %}
+
+{% block body %}
+<div class="text-center">
+	<form class="form-signin" action="/signup" method="POST">
+		<h1 class="h3 mb-3 font-weight-normal">Please Sign Up</h1>
+		<label for="inputEmail" class="sr-only">User id</label>
+		<input type="id" name="inputID" class="form-control" placeholder="User ID" required autofocus>
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" name="inputPassword" class="form-control" placeholder="Password" required >
+		{% if message %}
+		<div class="alert alert-danger" role="alert">
+			{{ message }}
+		</div>
+		{% endif %}
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+
+		<p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+	</form>
+
+</div>
+
+
+{% endblock %}

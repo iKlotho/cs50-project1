@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %} 
+Book Search
+{% endblock %}
+
+{% block body%}
+
+{% if message != None %}
+<div class="alert alert-danger" role="alert">
+	{{ message }}
+</div>
+{% endif %}
+<form class="form-inline justify-content-center" method="POST" action="/search">
+	<label class="sr-only" for="inlineFormInput">ISBN</label>
+	<input name="isbn" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="ISBN">
+
+	<label class="sr-only" for="inlineFormInputGroup">Title</label>
+	<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+		
+		<input name="title"type="text" class="form-control" id="inlineFormInputGroup" placeholder="Title">
+	</div>
+
+	<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+		
+		<input name="author" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Author">
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<hr>
+
+{% if res%}
+</br><h1 class="text-center"> Results </h1></br>
+<div class="row">
+{% for d in res %}
+	<div class="col-sm">
+		<li class="media">
+			<a href="{{ url_for('book',code=d['best_book']['id']['#text'])}}">
+				<img class="mr-3" itemprop="image" src={{ d['best_book']['image_url'] }}>
+			</a>
+			<div class="media-body">
+				<h5 class="mt-0 mb-1">{{ d['best_book']['title'] }}</h5>
+				{{ d['best_book']['author']['name'] }}
+			</div>
+		</li>
+	</br></br>
+</div>
+{%endfor%}
+</div>
+{%endif%}
+
+
+
+{% endblock %}
