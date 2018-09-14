@@ -12,5 +12,3 @@ curr.execute("CREATE TABLE accounts (id SERIAL PRIMARY KEY, user_id VARCHAR NOT 
 conn.commit()
 print("CREATED")
 
-
-CREATE TABLE reviews (id SERIAL PRIMARY KEY, review VARCHAR NOT NULL,acc_id INTEGER REFERENCES accounts)
